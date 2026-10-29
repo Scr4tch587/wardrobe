@@ -1,0 +1,52 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "wardrobe",
+	"compatibility_date": "2026-10-23",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "./workers/api.ts",
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"vars": {
+		"SITE_TZ": "America/Toronto",
+		"SITE_LAT": "43.4643",
+		"SITE_LON": "-80.5204",
+		"PUBLISH_DELAY_DAYS": "1",
+		"RP_ID": "localhost",
+		"ORIGIN": "http://localhost:5173",
+		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "wardrobe",
+			"database_id": "00000000-0000-0000-0000-000000000000",
+			"migrations_dir": "migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "wardrobe-media"
+		}
+	],
+	"ratelimits": [
+		{
+			"name": "SUGGEST_LIMITER",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 3,
+				"period": 60
+			}
+		}
+	],
+	"triggers": {
+		"crons": ["0 9 * * *", "0 15 * * *"]
+	}
+	/*__ROUTES__*/
+}

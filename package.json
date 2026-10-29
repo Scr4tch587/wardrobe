@@ -1,0 +1,49 @@
+{
+  "name": "wardrobe",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "build:vercel": "react-router build && node scripts/vercel-output.mjs",
+    "predev": "node scripts/ensure-local.mjs",
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "wrangler types && react-router typegen && tsc -b",
+    "deploy:api": "wrangler deploy",
+    "deploy:web": "npm run build:vercel && npx vercel deploy --prebuilt --prod",
+    "deploy": "npm run deploy:api && npm run deploy:web",
+    "preview": "npm run build && vite preview",
+    "cf-typegen": "wrangler types",
+    "postinstall": "wrangler types",
+    "test": "vitest run",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply wardrobe --local",
+    "db:migrate": "wrangler d1 migrations apply wardrobe --remote",
+    "setup": "node scripts/setup.mjs"
+  },
+  "dependencies": {
+    "@simplewebauthn/browser": "^14.0.0",
+    "@simplewebauthn/server": "^14.0.3",
+    "drizzle-orm": "^0.45.4",
+    "isbot": "^5.1.36",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "@react-router/node": "^8.5.0",
+    "react-router": "^8.5.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.4.10",
+    "@vercel/nft": "^0.30.0",
+    "@react-router/dev": "^8.5.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "drizzle-kit": "^0.31.11",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.12",
+    "wrangler": "^4.155.0"
+  }
+}

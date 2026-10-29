@@ -1,0 +1,27 @@
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
+
+export default [
+  index("routes/home.tsx"),
+  route("items", "routes/items.tsx"),
+  route("items/:id", "routes/item.tsx"),
+  route("outfits", "routes/outfits.tsx"),
+  route("outfits/random", "routes/outfits-random.tsx"),
+  route("outfits/:date", "routes/outfit.tsx"),
+  route("leaderboard", "routes/leaderboard.tsx"),
+  route("stats", "routes/stats.tsx"),
+  route("suggest", "routes/suggest.tsx"),
+  route("suggestions", "routes/suggestions.tsx"),
+  route("admin/login", "routes/admin.login.tsx"),
+  route("admin/login/passkey", "routes/admin.login.passkey.tsx"),
+  route("admin/setup", "routes/admin.setup.tsx"),
+  route("admin/setup/passkey", "routes/admin.setup.passkey.tsx"),
+  route("admin/logout", "routes/admin.logout.tsx"),
+  route("admin", "routes/admin.tsx"),
+  route("admin/items", "routes/admin.items.tsx"),
+  route("admin/items/new", "routes/admin.items.new.tsx"),
+  route("admin/items/:id", "routes/admin.item.tsx"),
+  route("admin/outfits/:date", "routes/admin.outfit.tsx"),
+  route("admin/uploads", "routes/admin.uploads.tsx"),
+  route("admin/suggestions", "routes/admin.suggestions.tsx"),
+  route("admin/suggestions/:id", "routes/admin.suggestion.tsx"),
+] satisfies RouteConfig;
